@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# This file is part of restful-distributed-lock-manager released under the MIT license.
+# This file is part of rdlm-py released under the MIT license.
 # See the LICENSE file for more information.
 
 from setuptools import setup, find_packages
