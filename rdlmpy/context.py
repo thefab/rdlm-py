@@ -7,6 +7,10 @@
 from rdlmpy.client import RDLMClient
 
 class RDLMContextManager(object):
+    '''
+    Class which defines a ContextManager to get a convenient way to use RDLMClient with 
+    the "with" statement
+    '''
 
     __client = None
     __resource_name = None
