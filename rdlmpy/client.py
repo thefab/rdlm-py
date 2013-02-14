@@ -6,7 +6,7 @@
 
 import requests
 import json
-from rdlmpy.exceptions import RDLMLockWaitExceededException, RDLMLockDeletedException
+from rdlmpy.exceptions import RDLMLockWaitExceededException, RDLMLockDeletedException, RDLMLockServerException
 from rdlmpy.lock import RDLMLock
 
 class RDLMClient(object):
