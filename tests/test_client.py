@@ -1,5 +1,6 @@
 import unittest
 from rdlmpy import RDLMClient
+from rdlmpy import RDLMLockWaitExceededException, RDLMLockDeletedException, RDLMLockServerException
 from httpretty import HTTPretty, httprettified
 
 class TestClient(unittest.TestCase):
@@ -30,6 +31,29 @@ class TestClient(unittest.TestCase):
     def test_acquire(self):
         (lock, lock_url) = self._make_lock_object()
         self.assertEqual(lock.url, lock_url)
+
+    @httprettified
+    def _test_acquire_exception(self, status_code, exception):
+        url = "%s/locks/%s" % (self.baseurl, self.resource)
+        lock_url = "%s/ff14608f6ab342f0bb2a86d551d42a8c" % url
+        HTTPretty.register_uri(HTTPretty.POST, url, status=status_code, location=lock_url)
+        try:
+            self.client.lock_acquire(self.resource)
+            raise Exception("no exception raised")
+        except exception:
+            pass
+
+    @httprettified
+    def test_acquire_408(self):
+        self._test_acquire_exception(408, RDLMLockWaitExceededException)
+
+    @httprettified
+    def test_acquire_500(self):
+        self._test_acquire_exception(500, RDLMLockServerException)
+
+    @httprettified
+    def test_acquire_409(self):
+        self._test_acquire_exception(409, RDLMLockDeletedException)
 
     @httprettified
     def test_release(self):
