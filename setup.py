@@ -29,7 +29,7 @@ setup(
         'requests >= 1.0.0'
     ],
     classifiers=[
-        'Development Status :: 5 - Alpha',
+        'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Developers',
