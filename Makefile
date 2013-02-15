@@ -11,6 +11,7 @@ clean:
 	cd tests && rm -f *.pyc
 	cd rdlmpy && rm -f *.pyc
 	cd tests && rm -Rf htmlcov 
+	rm -Rf rdlm_py.egg-info
 	rm -f .coverage tests/.coverage
 	rm -f MANIFEST
 	rm -Rf build
