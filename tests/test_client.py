@@ -35,8 +35,11 @@ class TestClient(unittest.TestCase):
     @httprettified
     def _test_acquire_exception(self, status_code, exception):
         url = "%s/locks/%s" % (self.baseurl, self.resource)
-        lock_url = "%s/ff14608f6ab342f0bb2a86d551d42a8c" % url
-        HTTPretty.register_uri(HTTPretty.POST, url, status=status_code, location=lock_url)
+        if status_code == 201:
+            lock_url = "%s/ff14608f6ab342f0bb2a86d551d42a8c" % url
+            HTTPretty.register_uri(HTTPretty.POST, url, status=status_code, location=lock_url)
+        else:
+            HTTPretty.register_uri(HTTPretty.POST, url, status=status_code)
         try:
             self.client.lock_acquire(self.resource)
             raise Exception("no exception raised")

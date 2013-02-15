@@ -72,6 +72,3 @@ class RDLMClient(object):
         '''
         r = requests.delete(lock.url)
         return (r.status_code == 204)
-
-    def lock_info(self, lock):
-        pass
