@@ -8,6 +8,10 @@
 
 `rdlm-py` is at an early stage of development (API can change).
 
+## Status (master branch)
+
+[![Build Status](https://travis-ci.org/thefab/rdlm-py.png)](https://travis-ci.org/thefab/rdlm-py)
+
 ## Two ways to use it 
 
 ### Classic API

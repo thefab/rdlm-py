@@ -14,6 +14,11 @@ try:
 except IOError:
     LONG_DESCRIPTION = DESCRIPTION
 
+with open('pip-requirements.txt') as reqs:
+    install_requires = [
+        line for line in reqs.read().split('\n') if (line and not
+                                                     line.startswith('--'))]
+
 setup(
     name='rdlm-py',
     version=rdlmpy.__version__,
@@ -25,9 +30,7 @@ setup(
     download_url='https://github.com/thefab/rdlm-py',
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    install_requires=[
-        'requests >= 1.0.0'
-    ],
+    install_requires=install_requires,
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
