@@ -1,0 +1,17 @@
+{
+    "uid": "94e4458bad8248828213275ae0b17eae", 
+    "title": "test title", 
+    "active_since": "2013-03-02T22:00:05.555051", 
+    "_links": {
+        "self": {
+            "href": "/locks/foo/94e4458bad8248828213275ae0b17eae"
+        }, 
+        "resource": {
+            "href": "/resources/foo"
+        }
+    }, 
+    "active_expires": "2013-03-02T22:05:05.555051", 
+    "active": true, 
+    "lifetime": 300, 
+    "wait": 10
+}

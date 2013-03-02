@@ -24,7 +24,7 @@
     client = RDLMClient(server="localhost", port=8888, default_title="classic example", default_lifetime=300, default_wait=10)
 
     # Acquire a lock on resource : foo
-    lock = client.lock_acquire("foo")
+    lock_url = client.lock_acquire("foo")
 
     # We have the lock on resource : foo
     # [...]
@@ -32,12 +32,12 @@
     # Try to acquire the same lock another time with a overrided wait timeout of 3 seconds
     # => RDLMException 
     try:
-        lock2 = client.lock_acquire("foo", wait=3)
+        lock_url2 = client.lock_acquire("foo", wait=3)
     except RDLMException:
         print "Can't acquire the lock"
 
     # Release the lock
-    result = client.lock_release(lock)
+    result = client.lock_release(lock_url)
     if not(result):
         print "Can't release the lock"
 
