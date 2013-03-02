@@ -101,7 +101,7 @@ class RDLMClient(object):
         r = requests.get(lock_url)
         try:
             if r.status_code == 200:
-                return RDLMLock.factory(lock_url, r.content)
+                return RDLMLock.factory(lock_url, r.content.decode('utf-8'))
         except:
             pass
         return None

@@ -80,7 +80,7 @@ class TestClient(unittest.TestCase):
         self.assertTrue('Authorization' in HTTPretty.last_request.headers)
         b64 = base64.standard_b64encode(b"foo:bar")
         expected = b"Basic " + b64
-        self.assertEqual(HTTPretty.last_request.headers['Authorization'], expected)
+        self.assertEqual(HTTPretty.last_request.headers['Authorization'].encode('ascii'), expected)
 
     @httprettified
     def test_delete_resource(self):
@@ -94,7 +94,7 @@ class TestClient(unittest.TestCase):
         self.assertTrue('Authorization' in HTTPretty.last_request.headers)
         b64 = base64.standard_b64encode(b"foo:bar")
         expected = b"Basic " + b64
-        self.assertEqual(HTTPretty.last_request.headers['Authorization'], expected)
+        self.assertEqual(HTTPretty.last_request.headers['Authorization'].encode('ascii'), expected)
 
     @httprettified
     def test_get(self):
