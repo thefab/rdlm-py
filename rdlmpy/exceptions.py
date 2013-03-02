@@ -26,8 +26,15 @@ class RDLMLockDeletedException(RDLMException):
     pass
 
 
-class RDLMLockServerException(RDLMException):
+class RDLMServerException(RDLMException):
     '''
     Unknown exception from the RDLM server
+    '''
+    pass
+
+
+class RDLMClientException(RDLMException):
+    '''
+    Unknown exception from the client
     '''
     pass

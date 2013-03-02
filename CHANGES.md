@@ -1,5 +1,10 @@
 # CHANGES
 
+## Release 0.1a4 (alpha)
+
+- `lock_acquire()` can return an RDLMClientException
+- `RDLMLockServerException` is renamed to `RDLMServerException`
+
 ## Release 0.1a3 (alpha)
 
 - light refactoring

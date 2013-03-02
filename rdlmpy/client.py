@@ -14,7 +14,8 @@ import json
 from rdlmpy.lock import RDLMLock
 from rdlmpy.exceptions import RDLMLockWaitExceededException
 from rdlmpy.exceptions import RDLMLockDeletedException
-from rdlmpy.exceptions import RDLMLockServerException
+from rdlmpy.exceptions import RDLMServerException
+from rdlmpy.exceptions import RDLMClientException
 from rdlmpy import __version__ as VERSION
 
 
@@ -64,7 +65,8 @@ class RDLMClient(object):
           "wait" seconds
         - a RDLMLockDeletedException: the request has been deleted by
           an admin request
-        - a RDLMLockServerException: unknown error from the RDLM server
+        - a RDLMServerException: unknown error from the RDLM server
+        - a RDLMClientException: unknown error from the RDLM client
         '''
         lock_dict = {}
         lock_dict['lifetime'] = self._default_lifetime \
@@ -72,13 +74,18 @@ class RDLMClient(object):
         lock_dict['wait'] = self._default_wait if wait is None else wait
         lock_dict['title'] = self._default_title if title is None else title
         lock_raw = json.dumps(lock_dict)
-        r = requests.post("%s/locks/%s" % (self._base_url, resource_name), data=lock_raw)
+        try:
+            r = requests.post("%s/locks/%s" % (self._base_url, resource_name), data=lock_raw)
+        except:
+            raise RDLMServerException()
         if r.status_code == 408:
             raise RDLMLockWaitExceededException()
         elif r.status_code == 409:
             raise RDLMLockDeletedException()
+        elif r.status_code >= 400 and r.status_code < 500:
+            raise RDLMClientException()
         elif r.status_code != 201 or not(r.headers['Location'].startswith('http://')):
-            raise RDLMLockServerException()
+            raise RDLMServerException()
         return r.headers['Location']
 
     def lock_release(self, lock_url):

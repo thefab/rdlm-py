@@ -1,6 +1,6 @@
 import unittest
 from rdlmpy import RDLMClient
-from rdlmpy import RDLMLockWaitExceededException, RDLMLockDeletedException, RDLMLockServerException
+from rdlmpy import RDLMLockWaitExceededException, RDLMLockDeletedException, RDLMServerException
 from httpretty import HTTPretty, httprettified
 import base64
 import os
@@ -54,7 +54,7 @@ class TestClient(unittest.TestCase):
 
     @httprettified
     def test_acquire_500(self):
-        self._test_acquire_exception(500, RDLMLockServerException)
+        self._test_acquire_exception(500, RDLMServerException)
 
     @httprettified
     def test_acquire_409(self):
