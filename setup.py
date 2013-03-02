@@ -9,7 +9,7 @@ import rdlmpy
 
 DESCRIPTION = "rdlm-py is a python client for RDLM (Restful Distributed Lock Manager)"
 try:
-    with open('README.rst') as f:
+    with open('PIP.rst') as f:
         LONG_DESCRIPTION = f.read()
 except IOError:
     LONG_DESCRIPTION = DESCRIPTION
@@ -43,11 +43,11 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Unix',
         'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',  
-        'Programming Language :: Python :: 3.2',  
-        'Programming Language :: Python :: 3.3',  
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
         'Topic :: Utilities',
         'Topic :: System :: Distributed Computing',
         'Topic :: Software Development',
-      ]
+    ]
 )
