@@ -6,9 +6,10 @@
 
 from rdlmpy.client import RDLMClient
 
+
 class RDLMContextManager(object):
     '''
-    Class which defines a ContextManager to get a convenient way to use RDLMClient with 
+    Class which defines a ContextManager to get a convenient way to use RDLMClient with
     the "with" statement
     '''
 
@@ -16,8 +17,10 @@ class RDLMContextManager(object):
     __resource_name = None
     __lock = None
 
-    def __init__(self, resource_name, server="localhost", port=8888, lifetime=300, wait=10, title=None):
-        self.__client = RDLMClient(server=server, port=port, default_lifetime=lifetime, default_wait=wait, default_title=title)
+    def __init__(self, resource_name, server="localhost", port=8888, lifetime=300, wait=10,
+                 title=None):
+        self.__client = RDLMClient(server=server, port=port, default_lifetime=lifetime,
+                                   default_wait=wait, default_title=title)
         self.__resource_name = resource_name
 
     def __enter__(self):
