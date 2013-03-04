@@ -31,3 +31,33 @@ class RDLMContextManager(object):
         if self.__lock:
             self.__client.lock_release(self.__lock)
         return False
+
+
+class RDLMContextManagerFactory(object):
+    '''
+    Class which defines a factory of ContextManager preconfigured object
+    '''
+
+    __default_server = None
+    __default_port = None
+    __default_lifetime = None
+    __default_wait = None
+    __default_title = None
+
+    def __init__(self, default_server="localhost", default_port=8888, default_lifetime=300,
+                 default_wait=10, default_title=None):
+        self.__default_server = default_server
+        self.__default_port = default_port
+        self.__default_lifetime = default_lifetime
+        self.__default_wait = default_wait
+        self.__default_title = default_title
+
+    def factory(self, resource_name, override_server=None, override_port=None,
+                override_lifetime=None, override_wait=10, override_title=None):
+        server = override_server if override_server is not None else self.__default_server
+        port = override_port if override_port is not None else self.__default_port
+        lifetime = override_lifetime if override_lifetime is not None else self.__default_lifetime
+        wait = override_wait if override_wait is not None else self.__default_wait
+        title = override_title if override_title is not None else self.__default_title
+        return RDLMContextManager(resource_name, server=server, port=port, lifetime=lifetime,
+                                  wait=wait, title=title)
