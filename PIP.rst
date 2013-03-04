@@ -7,18 +7,25 @@ What is it ?
 ``rdlm-py`` is a python client for the `restful-distributed-lock-manager
 (RDLM) <https://github.com/thefab/restful-distributed-lock-manager>`_.
 
-Warning
--------
+Special features
+----------------
 
-``rdlm-py`` is at an early stage of development (API can change).
+- Classic and administrative (password protected) requests
+- Two ways to use it (a classical API and a (more pythonic) ContextManager API)
 
-Status (master branch)
-----------------------
+Quickstart
+----------
 
-`|Build Status| <https://travis-ci.org/thefab/rdlm-py>`_
+Installation
+~~~~~~~~~~~~
 
-Two ways to use it
-------------------
+::
+
+    pip install rdlm-py
+
+    Requirements: 
+    - Python 2.6, 2.7, 3.2 or 3.3
+    - Requests >= 1.0.4
 
 Classic API
 ~~~~~~~~~~~
@@ -66,4 +73,7 @@ Context Manager API
     # Here, we don't have the lock anymore
     # [...]
 
-.. |Build Status| image:: https://travis-ci.org/thefab/rdlm-py.png
+Warning
+-------
+
+``rdlm-py`` is at an early stage of development (API can change).
