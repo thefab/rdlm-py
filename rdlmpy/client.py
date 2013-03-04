@@ -96,7 +96,10 @@ class RDLMClient(object):
 
         The lock url is the return value of lock_acquire() method
         '''
-        r = requests.delete(lock_url)
+        try:
+            r = requests.delete(lock_url)
+        except:
+            raise RDLMServerException()
         return (r.status_code == 204)
 
     def lock_get(self, lock_url):
@@ -105,7 +108,10 @@ class RDLMClient(object):
         @param lock_url: the lock url
         @result: informations dict (or None)
         '''
-        r = requests.get(lock_url)
+        try:
+            r = requests.get(lock_url)
+        except:
+            raise RDLMServerException()
         try:
             if r.status_code == 200:
                 return RDLMLock.factory(lock_url, r.content.decode('utf-8'))
