@@ -2,5 +2,7 @@ include .gitignore
 include LICENSE
 include README.md
 include Makefile
+include lock-release.py
+include lock-acquire.py
 recursive-include tests *
 recursive-include rdlmpy *
