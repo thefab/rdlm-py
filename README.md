@@ -25,9 +25,9 @@
 
     Requirements: 
     - Python 2.6, 2.7, 3.2 or 3.3
-    - Requests >= 1.0.4
+    - Requests >= 1.2.3
 
-## Two ways to use it 
+## Three ways to use it 
 
 ### Classic API
 
@@ -69,3 +69,54 @@
     # Here, we don't have the lock anymore
     # [...]
 
+### CLI tools
+
+Two CLI tools are available :
+
+- `lock-acquire.py`: acquire a lock 
+- `lock-release.py`: release a lock
+
+Example in a shell script :
+
+    #!/bin/bash
+
+    LOCK_URL=`lock-acquire.py foo`
+    if test $? -ne 0; then
+        exit 1
+    fi
+
+    [...] 
+
+    lock-release.py ${LOCK_URL}
+
+Full manuals :
+
+    usage: lock-acquire.py [-h] [-H HOSTNAME] [-p PORT] [-t TIMEOUT] [-w WAIT]
+                        resource_name
+
+    Acquire a lock
+
+    positional arguments:
+    resource_name         Resource Name
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -H HOSTNAME, --hostname HOSTNAME
+                        rdlm server hostname
+    -p PORT, --port PORT  rdlm server port
+    -t TIMEOUT, --timeout TIMEOUT
+                        timeout of the lock if acquired and not released
+                        (seconds)
+    -w WAIT, --wait WAIT  max number of seconds to wait for the lock
+
+
+
+    usage: lock-release.py [-h] lock_url
+
+    Release a lock
+
+    positional arguments:
+    lock_url    Lock Url (returned by lock-acquire.py)
+
+    optional arguments:
+    -h, --help  show this help message and exit
