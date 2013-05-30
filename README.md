@@ -89,7 +89,7 @@ Example in a shell script :
 
     lock-release.py ${LOCK_URL}
 
-Full manuals :
+Full manual (`lock-acquire.py`) :
 
     usage: lock-acquire.py [-h] [-H HOSTNAME] [-p PORT] [-t TIMEOUT] [-w WAIT]
                         resource_name
@@ -109,7 +109,7 @@ Full manuals :
                         (seconds)
     -w WAIT, --wait WAIT  max number of seconds to wait for the lock
 
-
+Full manual (`lock-release.py`) :
 
     usage: lock-release.py [-h] lock_url
 
