@@ -36,5 +36,5 @@ except RDLMLockDeletedException:
     sys.stderr.write("The lock request has been deleted by an admin request\n")
     return_code = 2
 except:
-    sys.stderr.write("Unknonw error\n")
+    sys.stderr.write("Unknown error\n")
 sys.exit(return_code)
