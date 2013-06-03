@@ -147,3 +147,58 @@ class RDLMClient(object):
         else:
             r = requests.delete("%s/resources" % self._base_url)
         return (r.status_code == 204)
+
+    def resource_get_all(self, username=None, password=None):
+        '''
+        @summary: get resources list (with locks)
+        @param username: admin http username
+        @param password: admin http password
+        @result: list of resource names
+        '''
+        if username and password:
+            auth = HTTPBasicAuth(username, password)
+            r = requests.get("%s/resources" % self._base_url, auth=auth)
+        else:
+            r = requests.get("%s/resources" % self._base_url)
+        if r.status_code != 200:
+            raise RDLMServerException("Impossible to get all resources\
+                                      (unknown error")
+        try:
+            json_hal = json.loads(r.content)
+        except:
+            raise RDLMServerException("Impossible to get all resources\
+                                      (can't unserialize result")
+        if '_embedded' not in json_hal or \
+           'resources' not in json_hal['_embedded']:
+            return []
+        return [x['name'] for x in json_hal['_embedded']['resources']]
+
+    def resource_get_all_locks(self, resource_name, username=None, password=None):
+        '''
+        @summary: get locks list for a given resource
+        @param resource_name: name of the resource
+        @param username: admin http username
+        @param password: admin http password
+        @result: list of lock objects
+        '''
+        if username and password:
+            auth = HTTPBasicAuth(username, password)
+            r = requests.get("%s/resources/%s" % (self._base_url, resource_name), auth=auth)
+        else:
+            r = requests.get("%s/resources/%s" % (self._base_url, resource_name))
+        if r.status_code != 200:
+            raise RDLMServerException("Impossible to get all locks\
+                                      (unknown error")
+        try:
+            json_hal = json.loads(r.content.decode('utf-8'))
+        except:
+            raise RDLMServerException("Impossible to get all locks\
+                                      (can't unserialize result")
+        if '_embedded' not in json_hal or \
+           'locks' not in json_hal['_embedded']:
+            return []
+        out = []
+        for x in json_hal['_embedded']['locks']:
+            lock_url = "%s/%s" % (self._base_url, x['_links']['self']['href'])
+            out.append(RDLMLock.factory(lock_url, json.dumps(x)))
+        return out
