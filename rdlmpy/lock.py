@@ -6,6 +6,7 @@
 
 import json
 import datetime
+from rdlmpy.exceptions import RDLMClientException
 
 
 def iso8601_to_datetime(iso8601_string):
@@ -22,6 +23,10 @@ class RDLMLock(object):
     uid = None
     lifetime = None
     wait = None
+    active_since = None
+    active_expires = None
+    wait_since = None
+    wait_expires = None
 
     def __init__(self, url):
         self.url = url
@@ -37,20 +42,18 @@ class RDLMLock(object):
                 res.active_expires = iso8601_to_datetime(tmp['active_expires'])
             else:
                 res = RDLMWaitingLock(url)
-                res.wait_since = iso8601_to_datetime(tmp['active_since'])
-                res.wait_expires = iso8601_to_datetime(tmp['active_expires'])
+                res.wait_since = iso8601_to_datetime(tmp['wait_since'])
+                res.wait_expires = iso8601_to_datetime(tmp['wait_expires'])
             res.title = tmp['title']
             res.uid = tmp['uid']
             res.lifetime = tmp['lifetime']
             res.wait = tmp['wait']
         except:
-            pass
+            raise RDLMClientException("impossible to build the lock object")
         return res
 
 
 class RDLMActiveLock(RDLMLock):
-    active_since = None
-    active_expires = None
 
     @property
     def active(self):
@@ -58,8 +61,6 @@ class RDLMActiveLock(RDLMLock):
 
 
 class RDLMWaitingLock(RDLMLock):
-    wait_since = None
-    wait_expires = None
 
     @property
     def active(self):

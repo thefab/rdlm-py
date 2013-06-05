@@ -112,11 +112,8 @@ class RDLMClient(object):
             r = requests.get(lock_url)
         except:
             raise RDLMServerException()
-        try:
-            if r.status_code == 200:
-                return RDLMLock.factory(lock_url, r.content.decode('utf-8'))
-        except:
-            pass
+        if r.status_code == 200:
+            return RDLMLock.factory(lock_url, r.content.decode('utf-8'))
         return None
 
     def resource_delete(self, resource_name, username=None, password=None):
@@ -199,6 +196,6 @@ class RDLMClient(object):
             return []
         out = []
         for x in json_hal['_embedded']['locks']:
-            lock_url = "%s/%s" % (self._base_url, x['_links']['self']['href'])
+            lock_url = "%s%s" % (self._base_url, x['_links']['self']['href'])
             out.append(RDLMLock.factory(lock_url, json.dumps(x)))
         return out
