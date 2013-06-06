@@ -71,10 +71,14 @@
 
 ### CLI tools
 
-Two CLI tools are available :
+Some CLI tools are available :
 
 - `lock-acquire.py`: acquire a lock 
 - `lock-release.py`: release a lock
+- `lock-get.py`: get some informations about lock
+- `lock-list-resources.py`: list all resources
+- `lock-list-locks.py`: list all locks for a given resource
+
 
 Example in a shell script :
 
@@ -89,7 +93,7 @@ Example in a shell script :
 
     lock-release.py ${LOCK_URL}
 
-Full manual (`lock-acquire.py`) :
+Full manual (`lock-acquire.py`):
 
     usage: lock-acquire.py [-h] [-H HOSTNAME] [-p PORT] [-t TIMEOUT] [-w WAIT]
                         resource_name
@@ -109,7 +113,7 @@ Full manual (`lock-acquire.py`) :
                         (seconds)
     -w WAIT, --wait WAIT  max number of seconds to wait for the lock
 
-Full manual (`lock-release.py`) :
+Full manual (`lock-release.py`):
 
     usage: lock-release.py [-h] lock_url
 
@@ -120,3 +124,53 @@ Full manual (`lock-release.py`) :
 
     optional arguments:
     -h, --help  show this help message and exit
+
+Full manual (`lock-get.py`):
+
+    usage: lock-get.py [-h] lock_url
+
+    Get some informations about a lock
+
+    positional arguments:
+    lock_url    Lock Url (returned by lock-acquire.py)
+
+    optional arguments:
+    -h, --help  show this help message and exit
+
+Full manual (`lock-list-resources.py`):
+
+    usage: lock-list-resources.py [-h] [-H HOSTNAME] [-p PORT] [-u USERNAME]
+                                [-P PASSWORD]
+
+    List all resources (with locks)
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -H HOSTNAME, --hostname HOSTNAME
+                            rdlm server hostname
+    -p PORT, --port PORT  rdlm server port
+    -u USERNAME, --username USERNAME
+                            Administrative username
+    -P PASSWORD, --password PASSWORD
+                            Administrative password
+
+Full manual (`lock-list-locks.py`):
+
+    usage: lock-list-locks.py [-h] [-H HOSTNAME] [-p PORT] [-u USERNAME]
+                            [-P PASSWORD]
+                            resource_name
+
+    List all resources (with locks)
+
+    positional arguments:
+    resource_name         Resource Name
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -H HOSTNAME, --hostname HOSTNAME
+                            rdlm server hostname
+    -p PORT, --port PORT  rdlm server port
+    -u USERNAME, --username USERNAME
+                            Administrative username
+    -P PASSWORD, --password PASSWORD
+                            Administrative password
