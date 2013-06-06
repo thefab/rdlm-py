@@ -64,7 +64,7 @@ class RDLMClient(object):
         - a RDLMLockWaitExceededException: can't acquire the lock after
           "wait" seconds
         - a RDLMLockDeletedException: the request has been deleted by
-          an admin request
+          an delete request
         - a RDLMServerException: unknown error from the RDLM server
         - a RDLMClientException: unknown error from the RDLM client
         '''

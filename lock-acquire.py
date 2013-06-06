@@ -33,7 +33,7 @@ except RDLMLockWaitExceededException:
                      (args.resource_name, args.wait))
     return_code = 1
 except RDLMLockDeletedException:
-    sys.stderr.write("The lock request has been deleted by an admin request\n")
+    sys.stderr.write("The lock request has been deleted by an delete request\n")
     return_code = 2
 except:
     sys.stderr.write("Unknown error\n")

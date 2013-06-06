@@ -21,7 +21,7 @@ class RDLMLockWaitExceededException(RDLMException):
 
 class RDLMLockDeletedException(RDLMException):
     '''
-    Exception: the lock has been deleted by an admin request
+    Exception: the lock has been deleted by an delete request
     '''
     pass
 

@@ -30,10 +30,10 @@ setup(
     download_url='https://github.com/thefab/rdlm-py',
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    scripts=["lock-release.py", "lock-acquire.py"],
+    scripts=["lock-release.py", "lock-acquire.py", "lock-get.py", "lock-list-locks.py", "lock-list-resources.py"],
     install_requires=install_requires,
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Developers',
