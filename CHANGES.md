@@ -1,5 +1,26 @@
 # CHANGES
 
+## Release 0.2.0 (beta)
+
+- doc update
+
+## Release 0.1.b1 (beta)
+
+- add `resource_get_all()` and `resource_get_all_locks()` methods
+- add three new cli tools to interact with the RDLM server
+- little bugfixes and typo
+
+## Release 0.1a6 (alpha)
+
+- doc update
+
+## Release 0.1a5 (alpha)
+
+- introduce a `RDLMContextManagerFactory`object
+- introduce two cli tools to interact with the RDLM server
+- upgrade requirements
+- typos and styles fixes
+
 ## Release 0.1a4 (alpha)
 
 - `lock_acquire()` can return an RDLMClientException
