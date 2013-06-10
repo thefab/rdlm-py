@@ -31,9 +31,3 @@ Usage
 ~~~~~
 
 See the `README <https://github.com/thefab/rdlm-py/blob/master/README.md>`_ for more details.
-
-
-Warning
--------
-
-``rdlm-py`` is at an early stage of development (API can change).
