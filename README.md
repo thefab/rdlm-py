@@ -11,7 +11,7 @@
 ## Special features
 
 - Classic and administrative (password protected) requests
-- Two ways to use it (a classical API and a (more pythonic) ContextManager API)
+- Three ways to use it (a classical API, a (more pythonic) ContextManager API, some CLI tools)
 
 ## Warning
 
