@@ -26,7 +26,7 @@ return_code = 3
 try:
     lock_url = client.lock_acquire(args.resource_name, lifetime=args.timeout,
                                    wait=args.wait)
-    print lock_url
+    print(lock_url)
     return_code = 0
 except RDLMLockWaitExceededException:
     sys.stderr.write("Can't acquire the lock on %s resource in %i second(s)\n" %

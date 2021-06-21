@@ -49,12 +49,12 @@
     try:
         lock_url2 = client.lock_acquire("foo", wait=3)
     except RDLMException:
-        print "Can't acquire the lock"
+        print("Can't acquire the lock")
 
     # Release the lock
     result = client.lock_release(lock_url)
     if not(result):
-        print "Can't release the lock"
+        print("Can't release the lock"))))
 
 ### Context Manager API
 

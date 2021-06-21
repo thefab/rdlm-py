@@ -21,6 +21,6 @@ locks = client.resource_get_all_locks(args.resource_name, username=args.username
                                       password=args.password)
 for lock in locks:
     if lock.active:
-        print "active: %s since %s [%s]" % (lock.url, lock.active_since, lock.title)
+        print("active: %s since %s [%s]" % (lock.url, lock.active_since, lock.title))
     else:
-        print "waiting: %s since %s [%s]" % (lock.url, lock.wait_since, lock.title)
+        print("waiting: %s since %s [%s]" % (lock.url, lock.wait_since, lock.title))
