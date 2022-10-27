@@ -7,7 +7,7 @@
 import argparse
 import sys
 from rdlmpy import RDLMClient
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 parser = argparse.ArgumentParser(description='Get some informations about a lock')
 parser.add_argument("lock_url", type=str, help="Lock Url (returned by lock-acquire.py)")
@@ -26,18 +26,18 @@ client = RDLMClient(server=hostname, port=port)
 return_code = 3
 lock = client.lock_get(args.lock_url)
 if lock:
-    print "url:            %s" % lock.url
-    print "timeout:        %s (seconds)" % lock.lifetime
-    print "wait:           %s (seconds)" % lock.wait
-    print "title:          %s" % lock.title
+    print("url:            %s" % lock.url)
+    print("timeout:        %s (seconds)" % lock.lifetime)
+    print("wait:           %s (seconds)" % lock.wait)
+    print("title:          %s" % lock.title)
     if lock.active:
-        print "state:          active"
-        print "active_since:   %s" % lock.active_since
-        print "active_expires: %s" % lock.active_expires
+        print("state:          active")
+        print("active_since:   %s" % lock.active_since)
+        print("active_expires: %s" % lock.active_expires)
     else:
-        print "state:          waiting"
-        print "wait_since:     %s" % lock.wait_since
-        print "wait_expires:   %s" % lock.wait_expires
+        print("state:          waiting")
+        print("wait_since:     %s" % lock.wait_since)
+        print("wait_expires:   %s" % lock.wait_expires)
     return_code = 0
 else:
     sys.stderr.write("Can't find the lock\n")

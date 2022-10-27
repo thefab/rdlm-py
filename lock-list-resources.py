@@ -18,4 +18,4 @@ client = RDLMClient(server=args.hostname, port=args.port)
 
 names = client.resource_get_all(args.username, args.password)
 for name in names:
-    print name
+    print(name)
